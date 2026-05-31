@@ -699,7 +699,7 @@ async function loadPlacesFromSupabase() {
       category: r.category,
       lat:      r.lat,
       lng:      r.lng,
-      desc:     r.desc     || '',
+      desc:     r.descr    || '',
       address:  r.address  || '',
       phone:    r.phone    || '',
       email:    r.email    || '',
@@ -726,14 +726,7 @@ async function saveNewPlace(data) {
     category: data.category,
     lat:      data.lat,
     lng:      data.lng,
-    desc:     data.desc    || null,
-    address:  data.address || null,
-    phone:    data.phone   || null,
-    email:    data.email   || null,
-    web:      data.web     || null,
-    photos:   data.photos  || [],
-  };
-  const result = await sbFetch('places', {
+    descr:    data.desc    || null,
     method: 'POST',
     body: JSON.stringify(row),
   });
@@ -749,14 +742,7 @@ async function updatePlace(id, data) {
     category: data.category,
     lat:      data.lat,
     lng:      data.lng,
-    desc:     data.desc    || null,
-    address:  data.address || null,
-    phone:    data.phone   || null,
-    email:    data.email   || null,
-    web:      data.web     || null,
-    photos:   data.photos  || [],
-  };
-  await sbFetch('places?id=eq.' + id, {
+    descr:    data.desc    || null,
     method: 'PATCH',
     body: JSON.stringify(row),
     prefer: 'return=minimal',
